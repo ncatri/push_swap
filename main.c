@@ -4,33 +4,17 @@ int main(int argc, char **argv)
 {
 	t_stacks	stacks;
 
-	if (!process_stacks(argc, argv, &stacks))
-		return (error_message(ERROR, 1));
-	return (0);
+	if (setup_stacks(argc, argv, &stacks) == FAIL)
+		return (free_and_quit(stacks, EXIT_FAILURE));
+	return (EXIT_SUCCESS);
 }
 
 
-int	process_stacks(int argc, char **argv, t_stacks *stacks)
+int	free_and_quit(t_stacks stacks, int return_value)
 {
-//	int		i;
-	(void)argv;
-	if (argc == 1)
-		return (0);
-/*	i = 0;
-	while (++i < argc)
-	{
-		entry = argv[i];
-
-		if (!str_is_integer(entry) || !is_unique(entry))
-			return (0);
-	}
-*/
-	stacks->A = NULL;
-	return (1);
-}
-
-int	error_message(char *msg, int return_value)
-{
-	ft_putstr_fd(msg, 2);
+	free(stacks.A);
+	free(stacks.B);
+	if (return_value == EXIT_FAILURE)
+		ft_putstr_fd(ERR_MSG, 2);
 	return (return_value);
 }

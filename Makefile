@@ -1,3 +1,5 @@
+SRCS	= setup_stacks.c
+
 OBJS 	= $(SRCS:.c=.o)
 
 NAME	= push_swap
@@ -6,12 +8,12 @@ INC		= includes
 
 RM 		= rm -f
 CC		= clang
-CFLAGS	= -Wall -Wextra -Werror -g -I. -I$(LIBFT)/includes
+CFLAGS	= -Wall -Wextra -Werror -g -I. -I$(LIBFT)/includes -fsanitize=address
 
 all: $(NAME)
 
 $(NAME): $(LIBFT).a $(OBJS)
-	$(CC) $(CFLAGS) -L. -lft main.c -o $(NAME)
+	$(CC) $(CFLAGS) -L. -lft $(OBJS) main.c -o $(NAME)
 
 $(LIBFT).a:
 	$(MAKE) -C $(LIBFT)
