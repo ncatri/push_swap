@@ -21,6 +21,7 @@ int	setup_stacks(int argc, char **argv, t_stacks *stacks)
 		entry = ft_atoi(argv[i]);
 		if (!is_valid_entry(entry, argv[i]) || !is_unique(entry))
 			return (FAIL);
+		dll_add_back(&stacks->a_head, dll_create_node(entry));
 	}
 	return (SUCCESS);
 }
@@ -44,6 +45,7 @@ int	init_stacks(int argc, t_stacks *stacks)
 	stacks->b_size = size;
 	stacks->A = malloc(sizeof(int) * size);
 	stacks->B = malloc(sizeof(int) * size);
+	stacks->a_head = NULL;
 	if (!stacks->A || !stacks->B)
 		return (FAIL);
 	return (SUCCESS);
@@ -53,6 +55,7 @@ t_bool	is_valid_entry(int entry, char *str)
 {
 	int		num_len;
 	t_bool	neg;
+	char	*tmp;
 
 	neg = FALSE;
 	if (*str == '-')
@@ -63,19 +66,27 @@ t_bool	is_valid_entry(int entry, char *str)
 	while (*str == '0')
 		str++;
 	num_len = ft_strlen(str);
-	while (*str)
+	tmp = str;
+	while (*tmp)
 	{
-		if (!ft_isdigit(*str))
+		if (!ft_isdigit(*tmp))
 			return (FALSE);
-		str++;
+		tmp++;
 	}
-	if (num_len > INTMAX_LEN)
+	if (num_len > INTMAX_LEN || \
+			(num_len == INTMAX_LEN && is_different(str, entry)))
 		return (FALSE);
-	else if (num_len == INTMAX_LEN && \
-			((neg && entry > -2147483648) || (!neg && entry < 2147483647)))
-		return (FALSE);
-	else
-		return (TRUE);
+	return (TRUE);
+}
+
+t_bool	is_different(char *str, int entry)
+{
+	char *entry_str;
+
+	entry_str = ft_itoa(entry);
+	printf("ft_itoa: |%s|\n", entry_str);
+	entry_str++;
+	return (ft_strcmp(str, entry_str));
 }
 
 t_bool	is_unique(int entry)

@@ -6,6 +6,7 @@ int main(int argc, char **argv)
 
 	if (setup_stacks(argc, argv, &stacks) == FAIL)
 		return (free_and_quit(stacks, EXIT_FAILURE));
+	dll_print_list(stacks.a_head);
 	return (EXIT_SUCCESS);
 }
 
