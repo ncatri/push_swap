@@ -8,7 +8,12 @@ int main(int argc, char **argv)
 			sort_and_check_unicity(stacks.array, stacks.size) == FAIL)
 		return (free_and_quit(stacks, EXIT_FAILURE));
 	print_array(stacks.array, stacks.size);
-	dll_print_list(stacks.a_head);
+	print_list(stacks.a_head);
+
+	printf("\n");
+//	print_rev_list(stacks.a_head);
+	swap(&stacks.a_head);
+	print_list(stacks.a_head);
 	return (EXIT_SUCCESS);
 }
 

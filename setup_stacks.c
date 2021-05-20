@@ -116,4 +116,3 @@ int	sort_and_check_unicity(int *array, size_t size)
 	}
 	return (SUCCESS);
 }
-

@@ -25,11 +25,12 @@ typedef	struct	s_stacks
 	size_t	size;
 
 	t_node	*a_head;
+	t_node	*a_second;
 	t_node	*a_tail;
 
 	t_node	*b_head;
+	t_node	*b_second;
 	t_node	*b_tail;
-
 }				t_stacks;
 
 int	setup_stacks(int argc, char **argv, t_stacks *stacks);
@@ -39,7 +40,7 @@ t_bool	is_invalid_entry(long entry, char *str);
 int		sort_and_check_unicity(int *array, size_t size);
 
 /*
- * doubly linked list
+ * singly linked list
  *
 */
 
@@ -47,8 +48,17 @@ t_node	*dll_create_node(int val);
 void	dll_add_back(t_node **head, t_node *new);
 void	dll_add_front(t_node **head, t_node *new);
 void	dll_lstfree(t_node **head);
-void	dll_print_list(t_node *head);
+void	print_list(t_node *head);
+void	print_rev_list(t_node *head);
 
 void	print_array(int *array, size_t size);
+
+/*
+ * operations
+ *
+*/
+
+void	swap(t_node **head);
+t_node	*get_tail(t_node *head);
 
 # endif
