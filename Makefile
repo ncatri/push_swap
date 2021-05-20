@@ -13,7 +13,7 @@ CFLAGS	= -Wall -Wextra -Werror -g -I. -I$(LIBFT)/includes -fsanitize=address
 
 all: $(NAME)
 
-$(NAME): $(LIBFT).a $(OBJS)
+$(NAME): $(LIBFT).a $(OBJS) main.c
 	$(CC) $(CFLAGS) -L. -lft $(OBJS) main.c -o $(NAME)
 
 $(LIBFT).a:

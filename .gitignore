@@ -2,3 +2,4 @@
 *.o
 *.dSYM
 push_swap
+libft.a
