@@ -1,17 +1,17 @@
 #include "push_swap.h"
 
-void	swap(t_node **head)
+void	swap(t_stack *s)
 {
 	t_node	*second;
 
-	if (!head || !*head || !(*head)->next)
+	if (!s || !s->head || !s->head->next)
 		return ;
-	second = (*head)->next;
-	(*head)->next = second->next;
-	(*head)->prev = second;
-	second->next = *head;	
+	second = s->head->next;
+	s->head->next = second->next;
+	s->head->prev = second;
+	second->next = s->head;	
 	second->prev = NULL;
-	*head = second;
+	s->head = second;
 }
 
 

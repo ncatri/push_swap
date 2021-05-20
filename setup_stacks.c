@@ -8,12 +8,12 @@
  *
 */
 
-int	setup_stacks(int argc, char **argv, t_stacks *stacks)
+int	setup_data(int argc, char **argv, t_data *data)
 {
 	int		i;
 	long	entry;
 
-	if (argc == 1 || init_stacks(argc, stacks) == FAIL)
+	if (argc == 1 || init_data(argc, data) == FAIL)
 		return (FAIL);
 	i = 0;
 	while (++i < argc)
@@ -21,8 +21,8 @@ int	setup_stacks(int argc, char **argv, t_stacks *stacks)
 		entry = ft_atol(argv[i]);
 		if (is_invalid_entry(entry, argv[i]))
 			return (FAIL);
-		stacks->array[i - 1] = entry;
-		dll_add_back(&stacks->a_head, dll_create_node(entry));
+		data->array[i - 1] = entry;
+		dll_add_back(&data->a, dll_create_node(entry));
 	}
 //	print_array(stacks->array, stacks->size);
 	return (SUCCESS);
@@ -36,20 +36,20 @@ int	setup_stacks(int argc, char **argv, t_stacks *stacks)
  *
 */
 
-int	init_stacks(int argc, t_stacks *stacks)
+int	init_data(int argc, t_data *data)
 {
 	size_t	size;
 
-	if (argc == 0 || !stacks)
+	if (argc == 0 || !data)
 		return (FALSE);
 	size = argc - 1;
-	stacks->size = size;
-	stacks->array = malloc(sizeof(int) * size);
-	stacks->a_head = NULL;
-	stacks->a_tail = NULL;
-	stacks->b_head = NULL;
-	stacks->b_tail = NULL;
-	if (!stacks->array)
+	data->size = size;
+	data->array = malloc(sizeof(int) * size);
+	data->a.head = NULL;
+	data->a.tail = NULL;
+	data->b.head = NULL;
+	data->b.tail = NULL;
+	if (!data->array)
 		return (FAIL);
 	return (SUCCESS);
 }

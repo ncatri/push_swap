@@ -2,27 +2,27 @@
 
 int main(int argc, char **argv)
 {
-	t_stacks	stacks;
+	t_data	data;
 
-	if (setup_stacks(argc, argv, &stacks) == FAIL || \
-			sort_and_check_unicity(stacks.array, stacks.size) == FAIL)
-		return (free_and_quit(stacks, EXIT_FAILURE));
-	print_array(stacks.array, stacks.size);
-	print_list(stacks.a_head);
+	if (setup_data(argc, argv, &data) == FAIL || \
+			sort_and_check_unicity(data.array, data.size) == FAIL)
+		return (free_and_quit(data, EXIT_FAILURE));
+	print_array(data.array, data.size);
+	print_stack(data.a);
 
 	printf("\n");
 //	print_rev_list(stacks.a_head);
-	swap(&stacks.a_head);
-	print_list(stacks.a_head);
+//	swap(&stacks.a_head);
+//	print_list(stacks.a_head);
 	return (EXIT_SUCCESS);
 }
 
 
-int	free_and_quit(t_stacks stacks, int return_value)
+int	free_and_quit(t_data data, int return_value)
 {
-	free(stacks.array);
-	dll_lstfree(&stacks.a_head);
-	dll_lstfree(&stacks.b_head);
+	free(data.array);
+	dll_lstfree(&data.a.head);
+	dll_lstfree(&data.b.head);
 	if (return_value == EXIT_FAILURE)
 		ft_putstr_fd(ERR_MSG, 2);
 	return (return_value);

@@ -19,23 +19,24 @@ typedef struct	s_node
 	struct s_node	*next;
 }				t_node;
 
-typedef	struct	s_stacks
+typedef struct	s_stack
+{
+	t_node *head;
+	t_node *tail;
+}				t_stack;
+
+typedef	struct	s_data
 {
 	int		*array;
 	size_t	size;
 
-	t_node	*a_head;
-	t_node	*a_second;
-	t_node	*a_tail;
+	t_stack	a;
+	t_stack b;
+}				t_data;
 
-	t_node	*b_head;
-	t_node	*b_second;
-	t_node	*b_tail;
-}				t_stacks;
-
-int	setup_stacks(int argc, char **argv, t_stacks *stacks);
-int	free_and_quit(t_stacks stacks, int return_value);
-int	init_stacks(int argc, t_stacks *stacks);
+int	setup_data(int argc, char **argv, t_data *data);
+int	free_and_quit(t_data data, int return_value);
+int	init_data(int argc, t_data *data);
 t_bool	is_invalid_entry(long entry, char *str);
 int		sort_and_check_unicity(int *array, size_t size);
 
@@ -45,11 +46,11 @@ int		sort_and_check_unicity(int *array, size_t size);
 */
 
 t_node	*dll_create_node(int val);
-void	dll_add_back(t_node **head, t_node *new);
+void	dll_add_back(t_stack *stack, t_node *new);
 void	dll_add_front(t_node **head, t_node *new);
 void	dll_lstfree(t_node **head);
-void	print_list(t_node *head);
-void	print_rev_list(t_node *head);
+void	print_stack(t_stack s);
+void	print_rev_stack(t_stack *s);
 
 void	print_array(int *array, size_t size);
 
@@ -58,7 +59,7 @@ void	print_array(int *array, size_t size);
  *
 */
 
-void	swap(t_node **head);
+void	swap(t_stack *s);
 t_node	*get_tail(t_node *head);
 
 # endif

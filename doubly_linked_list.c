@@ -14,22 +14,23 @@ t_node	*dll_create_node(int val)
 	return (tmp);
 }
 
-void	dll_add_back(t_node **head, t_node *new)
+void	dll_add_back(t_stack *s, t_node *new)
 {
 	t_node	*cursor;
 
-	if (!head || !new)
+	if (!s|| !new)
 		return ;
-	if (*head == NULL)
+	if (s->head == NULL)
 	{
-		*head = new;
+		s->head = new;
 		return ;
 	}
-	cursor = *head;
+	cursor = s->head;
 	while (cursor->next)
 		cursor = cursor->next;
 	cursor->next = new;
 	new->prev = cursor;
+	s->tail = new;
 }
 
 void	dll_add_front(t_node **head, t_node *new)
@@ -60,13 +61,13 @@ void	dll_lstfree(t_node **head)
 
 /* debug */
 
-void	print_list(t_node *head)
+void	print_stack(t_stack s)
 {
 	t_node	*cursor;
 
-	if (!head)
+	if (!s.head)
 		return ;
-	cursor = head;
+	cursor = s.head;
 	while (cursor)
 	{
 		printf(" %d |", cursor->value);
@@ -75,13 +76,13 @@ void	print_list(t_node *head)
 	printf("\n");
 }
 
-void	print_rev_list(t_node *head)
+void	print_rev_stack(t_stack s)
 {
 	t_node *cursor;
 
-	if (!head)
+	if (!s.head)
 		return ;
-	cursor = get_tail(head);
+	cursor = s.tail; 
 	while (cursor)
 	{
 		printf(" %d |", cursor->value);
