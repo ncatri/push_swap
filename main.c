@@ -12,8 +12,14 @@ int main(int argc, char **argv)
 
 	printf("\n");
 //	print_rev_list(stacks.a_head);
-//	swap(&stacks.a_head);
-//	print_list(stacks.a_head);
+	printf("swap:\n");
+	swap(&data.a);
+	print_stack(data.a);
+
+	printf("rotate:\n");
+	rotate_stack(&data.a);
+	print_stack(data.a);
+
 	return (EXIT_SUCCESS);
 }
 

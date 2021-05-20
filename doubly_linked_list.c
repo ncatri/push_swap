@@ -16,20 +16,17 @@ t_node	*dll_create_node(int val)
 
 void	dll_add_back(t_stack *s, t_node *new)
 {
-	t_node	*cursor;
-
 	if (!s|| !new)
 		return ;
 	if (s->head == NULL)
 	{
 		s->head = new;
+		s->tail = new;
 		return ;
-	}
-	cursor = s->head;
-	while (cursor->next)
-		cursor = cursor->next;
-	cursor->next = new;
-	new->prev = cursor;
+	};
+	s->tail->next = new;
+	new->prev = s->tail;
+	new->next = NULL;
 	s->tail = new;
 }
 

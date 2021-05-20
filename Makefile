@@ -10,7 +10,7 @@ INC		= includes
 
 RM 		= rm -f
 CC		= clang
-CFLAGS	= -Wall -Wextra -Werror -g -I. -I$(LIBFT)/includes -fsanitize=address
+CFLAGS	= -Wall -Wextra -Werror -g -I. -I$(LIBFT)/includes 
 
 all: $(NAME)
 
@@ -30,3 +30,7 @@ clean:
 fclean: clean
 	$(MAKE) fclean -C $(LIBFT)
 	$(RM) $(NAME)
+
+re: fclean all
+
+.PHONY: clean fclean all re

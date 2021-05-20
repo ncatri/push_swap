@@ -14,7 +14,22 @@ void	swap(t_stack *s)
 	s->head = second;
 }
 
+void	rotate_stack(t_stack *s)
+{
+	t_node	*new_tail;
 
+	if (!s || !s->head || s->head == s->tail)
+		return ;
+	new_tail = s->tail->prev;
+	s->tail->next = s->head;
+	s->tail->prev = NULL;
+	s->head->prev = s->tail;	
+	s->head = s->tail;
+	s->tail = new_tail;
+	s->tail->next = NULL;
+}
+
+/* maybe not needed */
 t_node	*get_tail(t_node *head)
 {
 	t_node	*cursor;
@@ -25,15 +40,4 @@ t_node	*get_tail(t_node *head)
 	while (cursor->next)
 		cursor = cursor->next;
 	return (cursor);
-}
-
-void	rotate_list(t_node **head)
-{
-	t_node	*tail;
-
-	if (!head || !*head || !(*head)->next)
-		return ;
-	tail = get_tail(*head);
-
-
 }

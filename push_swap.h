@@ -50,7 +50,7 @@ void	dll_add_back(t_stack *stack, t_node *new);
 void	dll_add_front(t_node **head, t_node *new);
 void	dll_lstfree(t_node **head);
 void	print_stack(t_stack s);
-void	print_rev_stack(t_stack *s);
+void	print_rev_stack(t_stack s);
 
 void	print_array(int *array, size_t size);
 
@@ -61,5 +61,6 @@ void	print_array(int *array, size_t size);
 
 void	swap(t_stack *s);
 t_node	*get_tail(t_node *head);
+void	rotate_stack(t_stack *s);
 
 # endif
