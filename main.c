@@ -8,9 +8,14 @@ int main(int argc, char **argv)
 			sort_and_check_unicity(data.array, data.size) == FAIL)
 		return (free_and_quit(data, EXIT_FAILURE));
 	fill_indexes(data.a, data.array, data.size);
-	printf("before bubble:\n");
-	print_stack(data.a, INDEX);
 
+/*	print_stack(data.a, INDEX);
+	swap(&data.a);
+	printf("after swap:\n");
+	print_stack(data.a, INDEX);
+	printf("reverse stack:\n");
+	print_rev_stack(data.a, INDEX);
+*/
 	(&bubble_sort)(&data);	
 
 	return (free_and_quit(data, EXIT_SUCCESS));

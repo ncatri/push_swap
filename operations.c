@@ -7,6 +7,10 @@ void	swap(t_stack *s)
 	if (!s || !s->head || !s->head->next)
 		return ;
 	second = s->head->next;
+	if (second->next)
+		second->next->prev = s->head;
+	else
+		s->tail = s->head;
 	s->head->next = second->next;
 	s->head->prev = second;
 	second->next = s->head;	
