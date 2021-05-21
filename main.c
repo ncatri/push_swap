@@ -4,25 +4,17 @@ int main(int argc, char **argv)
 {
 	t_data	data;
 
-	if (setup_data(argc, argv, &data) == FAIL || \
+	if (get_valid_input(argc, argv, &data) == FAIL || \
 			sort_and_check_unicity(data.array, data.size) == FAIL)
 		return (free_and_quit(data, EXIT_FAILURE));
-	print_array(data.array, data.size);
-	print_stack(data.a);
+	fill_indexes(data.a, data.array, data.size);
+	printf("before bubble:\n");
+	print_stack(data.a, INDEX);
 
-	printf("\n");
-//	print_rev_list(stacks.a_head);
-	printf("swap:\n");
-	swap(&data.a);
-	print_stack(data.a);
+	(&bubble_sort)(&data);	
 
-	printf("rotate:\n");
-	rotate_stack(&data.a);
-	print_stack(data.a);
-
-	return (EXIT_SUCCESS);
+	return (free_and_quit(data, EXIT_SUCCESS));
 }
-
 
 int	free_and_quit(t_data data, int return_value)
 {

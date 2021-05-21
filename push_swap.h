@@ -12,9 +12,13 @@
 
 # define INTMAX_LEN (10)
 
+enum e_datatype {VALUE, INDEX};
+
 typedef struct	s_node
 {
 	int				value;
+	int				index;
+
 	struct s_node	*prev;
 	struct s_node	*next;
 }				t_node;
@@ -34,11 +38,15 @@ typedef	struct	s_data
 	t_stack b;
 }				t_data;
 
-int	setup_data(int argc, char **argv, t_data *data);
-int	free_and_quit(t_data data, int return_value);
-int	init_data(int argc, t_data *data);
+typedef void	(*t_algo)(t_data *data);
+
+int		get_valid_input(int argc, char **argv, t_data *data);
+int		free_and_quit(t_data data, int return_value);
+int		init_data(int argc, t_data *data);
 t_bool	is_invalid_entry(long entry, char *str);
 int		sort_and_check_unicity(int *array, size_t size);
+void	fill_indexes(t_stack s, int *array, size_t size);
+int		get_index(int value, int *array, size_t size);
 
 /*
  * singly linked list
@@ -49,8 +57,8 @@ t_node	*dll_create_node(int val);
 void	dll_add_back(t_stack *stack, t_node *new);
 void	dll_add_front(t_node **head, t_node *new);
 void	dll_lstfree(t_node **head);
-void	print_stack(t_stack s);
-void	print_rev_stack(t_stack s);
+void	print_stack(t_stack s, int data);
+void	print_rev_stack(t_stack s, int data);
 
 void	print_array(int *array, size_t size);
 
@@ -62,5 +70,15 @@ void	print_array(int *array, size_t size);
 void	swap(t_stack *s);
 t_node	*get_tail(t_node *head);
 void	rotate_stack(t_stack *s);
+void	reverse_rotate_stack(t_stack *s);
+void	push(t_stack *dst, t_stack *src);
+
+/*
+ * algo
+ *
+*/
+
+void	bubble_sort(t_data *data);
+t_bool	ordered(t_stack s);
 
 # endif

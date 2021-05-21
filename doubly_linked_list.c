@@ -8,6 +8,7 @@ t_node	*dll_create_node(int val)
 	if (tmp)
 	{
 		tmp->value = val;
+		tmp->index = -1;
 		tmp->next = NULL;
 		tmp->prev = NULL;
 	}
@@ -58,22 +59,28 @@ void	dll_lstfree(t_node **head)
 
 /* debug */
 
-void	print_stack(t_stack s)
+void	print_stack(t_stack s, int data)
 {
 	t_node	*cursor;
 
 	if (!s.head)
+	{
+		printf("(empty)\n");
 		return ;
+	}
 	cursor = s.head;
 	while (cursor)
 	{
-		printf(" %d |", cursor->value);
+		if (data == VALUE)
+			printf(" %d |", cursor->value);
+		if (data == INDEX)
+			printf(" %d |", cursor->index);
 		cursor = cursor->next;
 	}
 	printf("\n");
 }
 
-void	print_rev_stack(t_stack s)
+void	print_rev_stack(t_stack s, int data)
 {
 	t_node *cursor;
 
@@ -82,7 +89,10 @@ void	print_rev_stack(t_stack s)
 	cursor = s.tail; 
 	while (cursor)
 	{
-		printf(" %d |", cursor->value);
+		if (data == VALUE)
+			printf(" %d |", cursor->value);
+		if (data == INDEX)
+			printf(" %d |", cursor->index);
 		cursor = cursor->prev;
 	}
 	printf("\n");

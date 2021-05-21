@@ -1,6 +1,7 @@
 SRCS	= setup_stacks.c \
 		  doubly_linked_list.c \
-		  operations.c
+		  operations.c \
+		  algo.c
 
 OBJS 	= $(SRCS:.c=.o)
 
@@ -10,7 +11,7 @@ INC		= includes
 
 RM 		= rm -f
 CC		= clang
-CFLAGS	= -Wall -Wextra -Werror -g -I. -I$(LIBFT)/includes 
+CFLAGS	= -Wall -Wextra -Werror -g -I. -I$(LIBFT)/includes
 
 all: $(NAME)
 

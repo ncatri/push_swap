@@ -8,7 +8,7 @@
  *
 */
 
-int	setup_data(int argc, char **argv, t_data *data)
+int	get_valid_input(int argc, char **argv, t_data *data)
 {
 	int		i;
 	long	entry;
@@ -115,4 +115,30 @@ int	sort_and_check_unicity(int *array, size_t size)
 		}
 	}
 	return (SUCCESS);
+}
+
+void	fill_indexes(t_stack s, int *array, size_t size)
+{
+	t_node	*cursor;
+
+	cursor = s.head;
+	while (cursor)
+	{
+		cursor->index = get_index(cursor->value, array, size);
+		cursor = cursor->next;
+	}
+}
+
+int	get_index(int value, int *array, size_t size)
+{
+	size_t i;
+
+	i = 0;
+	while (i < size)
+	{
+		if (array[i] == value)
+			return (i);
+		i++;
+	}
+	return (-1);
 }
