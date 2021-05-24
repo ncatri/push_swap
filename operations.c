@@ -16,6 +16,7 @@ void	swap(t_stack *s)
 	second->next = s->head;	
 	second->prev = NULL;
 	s->head = second;
+	print_operation("s", s->name);
 }
 
 void	reverse_rotate_stack(t_stack *s)
@@ -31,6 +32,7 @@ void	reverse_rotate_stack(t_stack *s)
 	s->head = s->tail;
 	s->tail = new_tail;
 	s->tail->next = NULL;
+	print_operation("rr", s->name);
 }
 
 void	rotate_stack(t_stack *s)
@@ -45,10 +47,11 @@ void	rotate_stack(t_stack *s)
 	s->tail->next = s->head;
 	s->tail = s->head;
 	s->head = new_head;
+	print_operation("r", s->name);
 }
 
-/* pa : push b to a --> push(b, a)
- * pb : push a to b --> push(a, b)
+/* pa : push b to a --> push(a, b)
+ * pb : push a to b --> push(b, a)
 */
 void	push(t_stack *dst, t_stack *src)
 {
@@ -64,4 +67,10 @@ void	push(t_stack *dst, t_stack *src)
 	if (new_src_head)
 		new_src_head->prev = NULL;
 	src->head = new_src_head;
+	print_operation("p", dst->name);
+}
+
+void	print_operation(char *op, char stack_name)
+{
+	printf("%s%c\n", op, stack_name);
 }

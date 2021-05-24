@@ -25,8 +25,9 @@ typedef struct	s_node
 
 typedef struct	s_stack
 {
-	t_node *head;
-	t_node *tail;
+	char	name;
+	t_node	*head;
+	t_node	*tail;
 }				t_stack;
 
 typedef	struct	s_data
@@ -72,6 +73,7 @@ t_node	*get_tail(t_node *head);
 void	rotate_stack(t_stack *s);
 void	reverse_rotate_stack(t_stack *s);
 void	push(t_stack *dst, t_stack *src);
+void	print_operation(char *op, char stack_name);
 
 /*
  * algo
@@ -80,5 +82,6 @@ void	push(t_stack *dst, t_stack *src);
 
 void	bubble_sort(t_data *data);
 t_bool	ordered(t_stack s);
+void	sort_three(t_data *data);
 
 # endif

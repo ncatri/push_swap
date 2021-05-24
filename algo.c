@@ -1,44 +1,30 @@
 #include "push_swap.h"
 
-void	bubble_sort(t_data *data)
+void	sort_three(t_data *data)
 {
-	size_t i;
+	size_t	top;
+	size_t	mid;
+	size_t	bottom;
 
-	i = 0;
-	while (i < data->size )
+	top = data->a.head->index;
+	mid = data->a.head->next->index;
+	bottom = data->a.tail->index;
+	if (top < mid && mid < bottom && bottom > top)
+		return ;
+	else if (top < mid && mid > bottom && bottom > top)
 	{
-		if (data->a.head->index > data->a.head->next->index)
-		{
-			swap(&data->a);
-			write(1, "sa\n", 3);
-			print_stack(data->a, INDEX);
-		}
-		if (ordered(data->a))
-			break;
+		swap(&data->a);
 		rotate_stack(&data->a);
-		write(1, "ra\n", 3);
-		print_stack(data->a, INDEX);
-		i++;
 	}
-/*	if (!ordered(data->a))
-	{
+	else if (top > mid && mid < bottom && bottom > top)
+		swap(&data->a);
+	else if (top < mid && mid > bottom && bottom < top)
+		reverse_rotate_stack(&data->a);
+	else if (top > mid && mid < bottom && bottom < top)
 		rotate_stack(&data->a);
-		write(1, "ra\n", 3);
-		print_stack(data->a, INDEX);
-	}
-*/
-}
-
-t_bool	ordered(t_stack s)
-{
-	t_node	*cursor;
-
-	cursor = s.head;
-	while (cursor->next)
+	else if (top > mid && mid > bottom && bottom < top)
 	{
-		if (cursor->index != cursor->next->index - 1)
-			return (FALSE);
-		cursor = cursor->next;
+		swap(&data->a);
+		reverse_rotate_stack(&data->a);
 	}
-	return (TRUE);
 }

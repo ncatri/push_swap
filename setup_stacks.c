@@ -51,6 +51,8 @@ int	init_data(int argc, t_data *data)
 	data->b.tail = NULL;
 	if (!data->array)
 		return (FAIL);
+	data->a.name = 'a';
+	data->b.name = 'b';
 	return (SUCCESS);
 }
 
