@@ -36,11 +36,8 @@ void	split_two(t_data *data)
 
 	half = data->size / 2;
 	i = 0;
-	while (i < half)
-	{
-		move_lower_values(half, &data->b,  &data->a);
-		i++;
-	}
+	move_lower_values(half, &data->b,  &data->a);
+	move_lower_values(data->size, &data->b, &data->a);
 }
 
 void	move_lower_values(int range, t_stack *dst, t_stack *src)
@@ -48,19 +45,24 @@ void	move_lower_values(int range, t_stack *dst, t_stack *src)
 	int top;
 	int bottom;
 	int i;
+	int j;
 
-	top = get_position_from(range, src, TOP);
-	bottom = get_position_from(range, src, BOTTOM);
-	i = -1;
-	printf("top: %d, bottom: %d\n", top, bottom);
-	if (top <= bottom)
-		while (++i < top)
-			rotate_stack(src);
-	else
-		while (++i <= bottom)
-			reverse_rotate_stack(src);
-	push(dst, src);
-
+	i = 0;
+	while (i < range)
+	{
+		top = get_position_from(range, src, TOP);
+		bottom = get_position_from(range, src, BOTTOM);
+		j = -1;
+		printf("top: %d, bottom: %d\n", top, bottom);
+		if (top <= bottom)
+			while (++j < top)
+				rotate_stack(src);
+		else
+			while (++j <= bottom)
+				reverse_rotate_stack(src);
+		push(dst, src);
+		i++;
+	}
 }
 
 int	get_position_from(int range, t_stack *s, int from)
@@ -85,7 +87,7 @@ int	get_position_from(int range, t_stack *s, int from)
 		cursor = s->tail;
 		while (cursor)
 		{
-			if (cursor->index <= range)
+			if (cursor->index < range)
 				break;
 			cursor = cursor->prev;
 			i++;
