@@ -11,20 +11,61 @@
 int	get_valid_input(int argc, char **argv, t_data *data)
 {
 	int		i;
-	long	entry;
 
 	if (argc == 1 || init_data(argc, data) == FAIL)
 		return (FAIL);
 	i = 0;
 	while (++i < argc)
 	{
-		entry = ft_atol(argv[i]);
-		if (is_invalid_entry(entry, argv[i]))
+		if (fill_stack(argv[i], &data->a, &data->size) == FAIL)
 			return (FAIL);
-		data->array[i - 1] = entry;
-		dll_add_back(&data->a, dll_create_node(entry));
 	}
-//	print_array(stacks->array, stacks->size);
+	return (SUCCESS);
+}
+
+int	fill_stack(char *str, t_stack *s, size_t *size)
+{
+	char	**split;
+	int		i;
+	long	entry;
+	t_node	*new;
+
+	split = ft_split(str, " ");
+	if (!split)
+		return (FAIL);
+	i = -1;
+	while (split[++i])
+	{
+		entry = ft_atol(split[i]);
+		new = dll_create_node(entry);
+		if (is_invalid_entry(entry, split[i]) || !new)
+		{
+			free_split(split);
+			return (FAIL);
+		}
+		(*size)++;
+		dll_add_back(s, dll_create_node(entry));
+	}
+	free_split(split);
+	return (SUCCESS);
+}	
+
+int	fill_array(t_data *data)
+{
+	t_node	*cursor;
+	size_t	i;
+
+	data->array = malloc(sizeof(int) * data->size);
+	if (!data->array)
+		return (FAIL);
+	cursor = data->a.head;
+	i = 0;
+	while (cursor)
+	{
+		data->array[i] = cursor->value;
+		cursor = cursor->next;
+		i++;
+	}
 	return (SUCCESS);
 }
 
@@ -38,19 +79,13 @@ int	get_valid_input(int argc, char **argv, t_data *data)
 
 int	init_data(int argc, t_data *data)
 {
-	size_t	size;
-
 	if (argc == 0 || !data)
-		return (FALSE);
-	size = argc - 1;
-	data->size = size;
-	data->array = malloc(sizeof(int) * size);
+		return (FAIL);
+	data->size = 0;
 	data->a.head = NULL;
 	data->a.tail = NULL;
 	data->b.head = NULL;
 	data->b.tail = NULL;
-	if (!data->array)
-		return (FAIL);
 	data->a.name = 'a';
 	data->b.name = 'b';
 	data->a.size = 0;
@@ -72,6 +107,8 @@ t_bool	is_invalid_entry(long entry, char *str)
 	t_bool	neg;
 	char	*tmp;
 
+	if (!str)
+		return (FALSE);
 	neg = FALSE;
 	if (*str == '-')
 	{
@@ -136,7 +173,7 @@ void	fill_indexes_and_size(t_stack *s, int *array, size_t size)
 
 int	get_index(int value, int *array, size_t size)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (i < size)

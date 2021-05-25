@@ -50,6 +50,8 @@ t_bool	is_invalid_entry(long entry, char *str);
 int		sort_and_check_unicity(int *array, size_t size);
 void	fill_indexes_and_size(t_stack *s, int *array, size_t size);
 int		get_index(int value, int *array, size_t size);
+int		fill_array(t_data *data);
+int		fill_stack(char *str, t_stack *s, size_t *size);
 
 /*
  * singly linked list
