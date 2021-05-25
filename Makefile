@@ -1,7 +1,8 @@
 SRCS	= setup_stacks.c \
 		  doubly_linked_list.c \
 		  operations.c \
-		  algo.c
+		  algo.c \
+		  utils.c
 
 OBJS 	= $(SRCS:.c=.o)
 

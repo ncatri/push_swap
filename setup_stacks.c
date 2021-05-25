@@ -53,6 +53,8 @@ int	init_data(int argc, t_data *data)
 		return (FAIL);
 	data->a.name = 'a';
 	data->b.name = 'b';
+	data->a.size = 0;
+	data->b.size = 0;
 	return (SUCCESS);
 }
 
@@ -119,16 +121,17 @@ int	sort_and_check_unicity(int *array, size_t size)
 	return (SUCCESS);
 }
 
-void	fill_indexes(t_stack s, int *array, size_t size)
+void	fill_indexes_and_size(t_stack *s, int *array, size_t size)
 {
 	t_node	*cursor;
 
-	cursor = s.head;
+	cursor = s->head;
 	while (cursor)
 	{
 		cursor->index = get_index(cursor->value, array, size);
 		cursor = cursor->next;
 	}
+	s->size = size;
 }
 
 int	get_index(int value, int *array, size_t size)

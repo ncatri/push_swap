@@ -3,3 +3,5 @@
 *.dSYM
 push_swap
 libft.a
+checker_Mac.dms
+a.out

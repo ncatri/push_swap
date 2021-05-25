@@ -29,6 +29,7 @@ typedef struct	s_stack
 	char	name;
 	t_node	*head;
 	t_node	*tail;
+	int		size;
 }				t_stack;
 
 typedef	struct	s_data
@@ -47,7 +48,7 @@ int		free_and_quit(t_data data, int return_value);
 int		init_data(int argc, t_data *data);
 t_bool	is_invalid_entry(long entry, char *str);
 int		sort_and_check_unicity(int *array, size_t size);
-void	fill_indexes(t_stack s, int *array, size_t size);
+void	fill_indexes_and_size(t_stack *s, int *array, size_t size);
 int		get_index(int value, int *array, size_t size);
 
 /*
@@ -88,5 +89,7 @@ void	sort_three(t_stack *stack);
 void	split_two(t_data *data);
 void	move_lower_values(int range, t_stack *dst, t_stack *src);
 int		get_position_from(int range, t_stack *s, int from);
+int		get_max_position(t_stack *s);
+void	move_highest(t_stack *dst, t_stack *src);
 
 # endif

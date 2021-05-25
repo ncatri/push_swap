@@ -47,6 +47,7 @@ void	rotate_stack(t_stack *s)
 	s->tail->next = s->head;
 	s->tail = s->head;
 	s->head = new_head;
+	new_head->prev = NULL;
 	print_operation("r", s->name);
 }
 
@@ -67,7 +68,11 @@ void	push(t_stack *dst, t_stack *src)
 	if (new_src_head)
 		new_src_head->prev = NULL;
 	src->head = new_src_head;
+	if (dst->tail == NULL)
+		dst->tail = dst->head;
 	print_operation("p", dst->name);
+	dst->size++;
+	src->size--;
 }
 
 void	print_operation(char *op, char stack_name)

@@ -78,6 +78,7 @@ void	print_stack(t_stack s, int data)
 		cursor = cursor->next;
 	}
 	printf("\n");
+	printf("size: %d\n", s.size);
 }
 
 void	print_rev_stack(t_stack s, int data)
@@ -96,4 +97,5 @@ void	print_rev_stack(t_stack s, int data)
 		cursor = cursor->prev;
 	}
 	printf("\n");
+	printf("size: %d\n", s.size);
 }
