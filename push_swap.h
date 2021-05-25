@@ -13,6 +13,7 @@
 # define INTMAX_LEN (10)
 
 enum e_datatype {VALUE, INDEX};
+enum e_from {TOP, BOTTOM};
 
 typedef struct	s_node
 {
@@ -82,6 +83,10 @@ void	print_operation(char *op, char stack_name);
 
 void	bubble_sort(t_data *data);
 t_bool	ordered(t_stack s);
-void	sort_three(t_data *data);
+void	sort_three(t_stack *stack);
+
+void	split_two(t_data *data);
+void	move_lower_values(int range, t_stack *dst, t_stack *src);
+int		get_position_from(int range, t_stack *s, int from);
 
 # endif

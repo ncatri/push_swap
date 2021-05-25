@@ -9,8 +9,17 @@ int main(int argc, char **argv)
 		return (free_and_quit(data, EXIT_FAILURE));
 	fill_indexes(data.a, data.array, data.size);
 	if (data.size == 3)
-		sort_three(&data);
+		sort_three(&data.a);
+	
+	printf("stack a:\n");
 	print_stack(data.a, VALUE);
+	printf("stack b:\n");
+	print_stack(data.b, VALUE);
+	split_two(&data);
+	printf("stack a:\n");
+	print_stack(data.a, VALUE);
+	printf("stack b:\n");
+	print_stack(data.b, VALUE);
 
 	return (free_and_quit(data, EXIT_SUCCESS));
 }
