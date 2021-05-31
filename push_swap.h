@@ -13,7 +13,10 @@
 # define INTMAX_LEN (10)
 
 enum e_datatype {VALUE, INDEX};
+
 enum e_from {TOP, BOTTOM};
+
+enum e_maxmin {MAX, MIN};
 
 typedef struct	s_node
 {
@@ -96,7 +99,7 @@ void	split_two(t_data *data);
 void	move_lower_values(int range, t_stack *dst, t_stack *src);
 int		get_position_from_top(int range, t_stack *s);
 int		get_position_from_bottom(int range, t_stack *s);
-int		get_max_position(t_stack *s);
-void	move_highest(t_stack *dst, t_stack *src);
+void	move_highest_to_top(t_stack *dst, t_stack *src);
+int		get_target_position(t_stack *s, int target);
 
 # endif

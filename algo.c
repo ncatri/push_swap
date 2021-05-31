@@ -54,6 +54,11 @@ void	split_two(t_data *data)
 		i++;
 	}
 
+	data->b.index_max = data->size - 1;
+	data->b.index_min = 0; 
+
+//	throwback_values(&data->a, &data->b);
+
 //	printf("stack a:\n");
 //	print_stack(data->a, INDEX);
 //	printf("stack b:\n");
@@ -153,42 +158,4 @@ int	get_position_from_bottom(int range, t_stack *s)
 		return (i);
 	else
 		return (-1);
-}
-
-void	move_highest(t_stack *dst, t_stack *src)
-{
-	int	pos;
-	int j;
-
-	while (src->size)
-	{
-		pos = get_max_position(src);
-		j = -1;
-		if (pos == 1)
-			swap(src);
-		else if (pos <= src->size / 2)
-			while (++j < pos) 
-				rotate_stack(src);
-		else 
-			while (++j < (src->size - pos))
-				reverse_rotate_stack(src);
-		push(dst, src);
-	}
-}
-
-int	get_max_position(t_stack *s)
-{
-	int pos;
-	t_node *cursor;
-
-	pos = 0;
-	cursor = s->head;
-	while (cursor)
-	{
-		if (cursor->index == s->size -1)
-			break;
-		cursor = cursor->next;
-		pos++;
-	}
-	return (pos);
 }
