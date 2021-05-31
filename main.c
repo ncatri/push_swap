@@ -19,10 +19,23 @@ int main(int argc, char **argv)
 */
 	split_two(&data);
 
-/*	printf("stack a:\n");
+	printf("stack a:\n");
 	print_stack(data.a, INDEX);
 	printf("stack b:\n");
 	print_stack(data.b, INDEX);
-*/	
+	
 	return (free_and_quit(data, EXIT_SUCCESS));
 }
+
+/*
+int main(int argc, char **argv)
+{
+	int num;
+
+	if (argc != 2)
+		return (1);
+	num = ft_atoi(argv[1]);
+	printf("num: %d --> div: %d\n", num, get_division(num));
+	return (0);
+}
+*/

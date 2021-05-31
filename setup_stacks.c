@@ -90,6 +90,8 @@ int	init_data(int argc, t_data *data)
 	data->b.name = 'b';
 	data->a.size = 0;
 	data->b.size = 0;
+	data->a.index_max = -1;
+	data->b.index_min = -1;
 	return (SUCCESS);
 }
 
