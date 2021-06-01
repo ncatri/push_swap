@@ -73,6 +73,8 @@ void	push(t_stack *dst, t_stack *src)
 	print_operation("p", dst->name);
 	dst->size++;
 	src->size--;
+	if (src->size == 0)
+		src->tail = NULL;
 }
 
 void	print_operation(char *op, char stack_name)

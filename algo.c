@@ -1,63 +1,43 @@
 #include "push_swap.h"
 
-void	sort_three(t_stack *stack)
-{
-	size_t	top;
-	size_t	mid;
-	size_t	bottom;
-
-	top = stack->head->index;
-	mid = stack->head->next->index;
-	bottom = stack->tail->index;
-	if (top < mid && mid < bottom && bottom > top)
-		return ;
-	else if (top < mid && mid > bottom && bottom > top)
-	{
-		swap(stack);
-		rotate_stack(stack);
-	}
-	else if (top > mid && mid < bottom && bottom > top)
-		swap(stack);
-	else if (top < mid && mid > bottom && bottom < top)
-		reverse_rotate_stack(stack);
-	else if (top > mid && mid < bottom && bottom < top)
-		rotate_stack(stack);
-	else if (top > mid && mid > bottom && bottom < top)
-	{
-		swap(stack);
-		reverse_rotate_stack(stack);
-	}
-}
-
 void	split_two(t_data *data)
 {
 	int	i;
 	int	parts;
 	int range;
 
-	printf("stack a:\n");
+/*	printf("stack a:\n");
 	print_stack(data->a, INDEX);
 	printf("stack b:\n");
 	print_stack(data->b, INDEX);
-
+*/
 	i = 1;
 	parts = get_division(data->size);
 	while (i <= parts)
 	{
 		range = get_range(data->size, parts, i);
-		printf("range: %d\n", range);
+//		printf("range: %d\n", range);
 		move_lower_values(range - 1, &data->b,  &data->a);
-		printf("stack a:\n");
+/*		printf("stack a:\n");
 		print_stack(data->a, INDEX);
 		printf("stack b:\n");
 		print_stack(data->b, INDEX);
+*/
 		i++;
 	}
 
 	data->b.index_max = data->size - 1;
 	data->b.index_min = 0; 
 
-//	throwback_values(&data->a, &data->b);
+	while (data->b.head != NULL)
+		throwback_values(&data->a, &data->b);
+	int min_pos = get_target_position(&data->a, data->a.index_min);
+	if (min_pos > data->a.size / 2)
+		while (data->a.head->index != 0)
+			reverse_rotate_stack(&data->a);
+	else
+		while (data->a.head->index != 0)
+			rotate_stack(&data->a);
 
 //	printf("stack a:\n");
 //	print_stack(data->a, INDEX);
@@ -65,7 +45,6 @@ void	split_two(t_data *data)
 //	print_stack(data->b, INDEX);
 
 //	printf("move_highest:\n");
-//	move_highest(&data->a, &data->b);
 }
 
 int	get_range(size_t size, int part, int i)

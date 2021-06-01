@@ -100,6 +100,11 @@ void	move_lower_values(int range, t_stack *dst, t_stack *src);
 int		get_position_from_top(int range, t_stack *s);
 int		get_position_from_bottom(int range, t_stack *s);
 void	move_highest_to_top(t_stack *dst, t_stack *src);
+
+void	throwback_values(t_stack *dst, t_stack *src);
+int		best_to_move(int max, int min, t_stack *s);
+int		get_moves_to_top(int position, t_stack *s);
 int		get_target_position(t_stack *s, int target);
+void	move_target_to_top(t_stack *src, int target);
 
 # endif
