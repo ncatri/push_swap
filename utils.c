@@ -10,7 +10,7 @@ int	free_and_quit(t_data data, int return_value)
 	return (return_value);
 }
 
-t_bool is_sorted(t_stack *s)
+t_bool	is_sorted(t_stack *s)
 {
 	t_node	*cursor;
 
@@ -26,7 +26,7 @@ t_bool is_sorted(t_stack *s)
 
 void	print_array(int *array, size_t size)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (i < size)
@@ -35,4 +35,27 @@ void	print_array(int *array, size_t size)
 		i++;
 	}
 	printf("\n");
+}
+
+int	get_range(size_t size, int part, int i)
+{
+	float	frange;
+
+	frange = i * size / (float)part;
+	if (frange - (int)frange >= 0.5)
+		return ((int)frange + 1);
+	else
+		return (frange);
+}
+
+int	get_division(size_t size)
+{
+	int		div;
+	size_t	i;
+
+	i = 0;
+	while (i * i <= size)
+		i++;
+	div = i / 2;
+	return (div);
 }

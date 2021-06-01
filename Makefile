@@ -1,9 +1,11 @@
 SRCS	= setup_stacks.c \
+		  parsing.c \
 		  doubly_linked_list.c \
 		  operations.c \
 		  algo.c \
 		  algo2.c \
 		  sort_three.c \
+		  debug.c \
 		  utils.c
 
 OBJS 	= $(SRCS:.c=.o)

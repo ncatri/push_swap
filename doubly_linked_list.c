@@ -2,7 +2,7 @@
 
 t_node	*dll_create_node(int val)
 {
-	t_node *tmp;
+	t_node	*tmp;
 
 	tmp = malloc(sizeof(t_node));
 	if (tmp)
@@ -17,14 +17,14 @@ t_node	*dll_create_node(int val)
 
 void	dll_add_back(t_stack *s, t_node *new)
 {
-	if (!s|| !new)
+	if (!s || !new)
 		return ;
 	if (s->head == NULL)
 	{
 		s->head = new;
 		s->tail = new;
 		return ;
-	};
+	}
 	s->tail->next = new;
 	new->prev = s->tail;
 	new->next = NULL;
@@ -55,47 +55,4 @@ void	dll_lstfree(t_node **head)
 		cursor = next;
 	}
 	*head = NULL;
-}
-
-/* debug */
-
-void	print_stack(t_stack s, int data)
-{
-	t_node	*cursor;
-
-	if (!s.head)
-	{
-		printf("(empty)\n");
-		return ;
-	}
-	cursor = s.head;
-	while (cursor)
-	{
-		if (data == VALUE)
-			printf(" %d |", cursor->value);
-		if (data == INDEX)
-			printf(" %d |", cursor->index);
-		cursor = cursor->next;
-	}
-	printf("\n");
-	printf("size: %d\n", s.size);
-}
-
-void	print_rev_stack(t_stack s, int data)
-{
-	t_node *cursor;
-
-	if (!s.head)
-		return ;
-	cursor = s.tail; 
-	while (cursor)
-	{
-		if (data == VALUE)
-			printf(" %d |", cursor->value);
-		if (data == INDEX)
-			printf(" %d |", cursor->index);
-		cursor = cursor->prev;
-	}
-	printf("\n");
-	printf("size: %d\n", s.size);
 }

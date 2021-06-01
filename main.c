@@ -16,12 +16,6 @@ int main(int argc, char **argv)
 	else if (data.size == 5)
 		sort_five(&data);
 	else
-	
-/*	printf("stack a:\n");
-	print_stack(data.a, INDEX);
-	printf("stack b:\n");
-	print_stack(data.b, INDEX);
-*/
 		split_two(&data);
 
 	printf("stack a:\n");

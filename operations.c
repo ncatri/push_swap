@@ -13,7 +13,7 @@ void	swap(t_stack *s)
 		s->tail = s->head;
 	s->head->next = second->next;
 	s->head->prev = second;
-	second->next = s->head;	
+	second->next = s->head;
 	second->prev = NULL;
 	s->head = second;
 	print_operation("s", s->name);
@@ -28,7 +28,7 @@ void	reverse_rotate_stack(t_stack *s)
 	new_tail = s->tail->prev;
 	s->tail->next = s->head;
 	s->tail->prev = NULL;
-	s->head->prev = s->tail;	
+	s->head->prev = s->tail;
 	s->head = s->tail;
 	s->tail = new_tail;
 	s->tail->next = NULL;
@@ -63,7 +63,7 @@ void	push(t_stack *dst, t_stack *src)
 	new_src_head = src->head->next;
 	if (dst->head)
 		dst->head->prev = src->head;
-	src->head->next = dst->head; // now src_head is on dst
+	src->head->next = dst->head;
 	dst->head = src->head;
 	if (new_src_head)
 		new_src_head->prev = NULL;
