@@ -29,3 +29,13 @@ void	sort_three(t_stack *stack)
 	}
 }
 
+void	sort_five(t_data *data)
+{
+	move_target_to_top(&data->a, 0);
+	push(&data->b, &data->a);
+	move_target_to_top(&data->a, 1);
+	push(&data->b, &data->a);
+	sort_three(&data->a);
+	push(&data->a, &data->b);
+	push(&data->a, &data->b);
+}

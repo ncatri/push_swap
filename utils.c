@@ -10,6 +10,20 @@ int	free_and_quit(t_data data, int return_value)
 	return (return_value);
 }
 
+t_bool is_sorted(t_stack *s)
+{
+	t_node	*cursor;
+
+	cursor = s->head;
+	while (cursor->next)
+	{
+		if (cursor->index != cursor->next->index - 1)
+			return (FALSE);
+		cursor = cursor->next;
+	}
+	return (TRUE);
+}
+
 void	print_array(int *array, size_t size)
 {
 	size_t i;

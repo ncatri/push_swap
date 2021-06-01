@@ -6,29 +6,16 @@ void	split_two(t_data *data)
 	int	parts;
 	int range;
 
-/*	printf("stack a:\n");
-	print_stack(data->a, INDEX);
-	printf("stack b:\n");
-	print_stack(data->b, INDEX);
-*/
 	i = 1;
 	parts = get_division(data->size);
 	while (i <= parts)
 	{
 		range = get_range(data->size, parts, i);
-//		printf("range: %d\n", range);
 		move_lower_values(range - 1, &data->b,  &data->a);
-/*		printf("stack a:\n");
-		print_stack(data->a, INDEX);
-		printf("stack b:\n");
-		print_stack(data->b, INDEX);
-*/
 		i++;
 	}
-
 	data->b.index_max = data->size - 1;
 	data->b.index_min = 0; 
-
 	while (data->b.head != NULL)
 		throwback_values(&data->a, &data->b);
 	int min_pos = get_target_position(&data->a, data->a.index_min);
@@ -38,13 +25,6 @@ void	split_two(t_data *data)
 	else
 		while (data->a.head->index != 0)
 			rotate_stack(&data->a);
-
-//	printf("stack a:\n");
-//	print_stack(data->a, INDEX);
-//	printf("stack b:\n");
-//	print_stack(data->b, INDEX);
-
-//	printf("move_highest:\n");
 }
 
 int	get_range(size_t size, int part, int i)

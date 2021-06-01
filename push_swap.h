@@ -59,6 +59,7 @@ int		fill_array(t_data *data);
 int		fill_stack(char *str, t_stack *s, size_t *size);
 int		get_division(size_t size);
 int		get_range(size_t size, int part, int i);
+t_bool	is_sorted(t_stack *s);
 
 /*
  * singly linked list
@@ -106,5 +107,7 @@ int		best_to_move(int max, int min, t_stack *s);
 int		get_moves_to_top(int position, t_stack *s);
 int		get_target_position(t_stack *s, int target);
 void	move_target_to_top(t_stack *src, int target);
+
+void	sort_five(t_data *data);
 
 # endif

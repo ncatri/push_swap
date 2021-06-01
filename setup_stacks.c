@@ -44,7 +44,7 @@ int	fill_stack(char *str, t_stack *s, size_t *size)
 			return (FAIL);
 		}
 		(*size)++;
-		dll_add_back(s, dll_create_node(entry));
+		dll_add_back(s, new);
 	}
 	free_split(split);
 	return (SUCCESS);

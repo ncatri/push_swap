@@ -9,21 +9,26 @@ int main(int argc, char **argv)
 			sort_and_check_unicity(data.array, data.size) == FAIL)
 		return (free_and_quit(data, EXIT_FAILURE));
 	fill_indexes_and_size(&data.a, data.array, data.size);
+	if (is_sorted(&data.a))
+		return (free_and_quit(data, EXIT_SUCCESS));
 	if (data.size == 3)
 		sort_three(&data.a);
+	else if (data.size == 5)
+		sort_five(&data);
+	else
 	
 /*	printf("stack a:\n");
 	print_stack(data.a, INDEX);
 	printf("stack b:\n");
 	print_stack(data.b, INDEX);
 */
-	split_two(&data);
+		split_two(&data);
 
-/*	printf("stack a:\n");
+	printf("stack a:\n");
 	print_stack(data.a, INDEX);
 	printf("stack b:\n");
 	print_stack(data.b, INDEX);
-*/
+
 	
 	return (free_and_quit(data, EXIT_SUCCESS));
 }
