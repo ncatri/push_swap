@@ -12,7 +12,7 @@ int	get_valid_input(int argc, char **argv, t_data *data)
 {
 	int		i;
 
-	if (init_data(argc, data) == FAIL || argc == 1)
+	if (init_data(argc, data) == FAIL)
 		return (FAIL);
 	i = 0;
 	while (++i < argc)

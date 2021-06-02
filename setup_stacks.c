@@ -53,7 +53,7 @@ int	sort_and_check_unicity(int *array, size_t size)
 	int		tmp;
 
 	sorted = FALSE;
-	while (!sorted)
+	while (!sorted && size > 0)
 	{
 		i = 0;
 		sorted = TRUE;

@@ -9,7 +9,7 @@ int main(int argc, char **argv)
 			sort_and_check_unicity(data.array, data.size) == FAIL)
 		return (free_and_quit(data, EXIT_FAILURE));
 	fill_indexes_and_size(&data.a, data.array, data.size);
-	if (is_sorted(&data.a))
+	if (data.size == 0 || is_sorted(&data.a))
 		return (free_and_quit(data, EXIT_SUCCESS));
 	if (data.size == 3)
 		sort_three(&data.a);
