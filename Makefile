@@ -24,17 +24,19 @@ RM 		= rm -f
 CC		= clang
 CFLAGS	= -Wall -Wextra -Werror -g -I$(INC) -I$(LIBFT)/includes
 
-%.o: %.c $(INC)/$(NAME).h 
+%.o: %.c $(INC)/$(NAME).h $(LIBFT)/$(LIBFT).a
 	$(CC) $(CFLAGS) -c $< -o $@
 
-all: $(NAME) $(LIBFT).a
+all: $(NAME)
 
-$(NAME): $(LIBFT).a $(OBJS) main.c
-	$(CC) $(CFLAGS) -L. -lft $(OBJS) main.c -o $(NAME)
+$(NAME): $(OBJS) main.c | libft_
+	$(CC) $(CFLAGS) -L$(LIBFT) -lft $(OBJS) main.c -o $(NAME)
 
-$(LIBFT).a:
+$(LIBFT)/(LIBFT).a:
 	$(MAKE) -C $(LIBFT)
-	mv $(LIBFT)/$(LIBFT).a .
+
+libft_:
+	$(MAKE) -C $(LIBFT)
 
 bonus: $(NAME) $(OBJS_BONUS) $(LIBFT).a $(INC)/$(NAME).h
 	$(CC) $(CFLAGS) -L. -lft $(OBJS) $(OBJS_BONUS) bonus/checker.c -o $(NAME_BONUS)
