@@ -1,15 +1,14 @@
-SRCS	= setup_stacks.c \
-		  parsing.c \
-		  doubly_linked_list.c \
-		  operations.c \
-		  algo.c \
-		  algo2.c \
-		  sort_three.c \
-		  debug.c \
-		  utils.c
+SRCS	= parsing/setup_stacks.c \
+		  parsing/parsing.c \
+		  list/doubly_linked_list.c \
+		  operations/operations.c \
+		  algo/algo.c \
+		  algo/algo2.c \
+		  algo/sort_three.c \
+		  algo/utils.c \
+		  algo/debug.c \
 
-SRCS_BONUS	= checker_functions.c \
-			  operations_double.c
+SRCS_BONUS	= bonus/operations_double.c
 
 OBJS 	= $(SRCS:.c=.o)
 
@@ -23,9 +22,12 @@ NAME_BONUS = checker
 
 RM 		= rm -f
 CC		= clang
-CFLAGS	= -Wall -Wextra -Werror -g -I. -I$(LIBFT)/includes
+CFLAGS	= -Wall -Wextra -Werror -g -I$(INC) -I$(LIBFT)/includes
 
-all: $(NAME)
+%.o: %.c $(INC)/$(NAME).h 
+	$(CC) $(CFLAGS) -c $< -o $@
+
+all: $(NAME) $(LIBFT).a
 
 $(NAME): $(LIBFT).a $(OBJS) main.c
 	$(CC) $(CFLAGS) -L. -lft $(OBJS) main.c -o $(NAME)
@@ -34,8 +36,8 @@ $(LIBFT).a:
 	$(MAKE) -C $(LIBFT)
 	mv $(LIBFT)/$(LIBFT).a .
 
-bonus: $(OBJS) $(OBJS_BONUS) $(LIBFT).a
-	$(CC) $(CFLAGS) -L. -lft $(OBJS) $(OBJS_BONUS) checker.c -o $(NAME_BONUS)
+bonus: $(NAME) $(OBJS_BONUS) $(LIBFT).a $(INC)/$(NAME).h
+	$(CC) $(CFLAGS) -L. -lft $(OBJS) $(OBJS_BONUS) bonus/checker.c -o $(NAME_BONUS)
 
 clean:
 	$(MAKE) clean -C $(LIBFT)

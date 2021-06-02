@@ -1,5 +1,6 @@
 #include "push_swap.h"
 
+/*
 void	throwback_max_min(t_stack *dst, t_stack *src)
 {
 	int	max;
@@ -23,6 +24,7 @@ void	throwback_max_min(t_stack *dst, t_stack *src)
 	if (best == MIN && dst->size > 1)
 		rotate_stack(dst, VERBOSE);
 }
+*/
 
 void	throwback_max(t_stack *dst, t_stack *src)
 {

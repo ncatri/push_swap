@@ -1,21 +1,33 @@
 #include "push_swap.h"
+#include <fcntl.h>
 
-t_bool	is_valid_instruction(char *line)
+int	main(int argc, char **argv)
 {
-	if (ft_strcmp(line, "pa") == 0 || \
-			ft_strcmp(line, "pb") == 0 || \
-			ft_strcmp(line, "ra") == 0 || \
-			ft_strcmp(line, "rb") == 0 || \
-			ft_strcmp(line, "rra") == 0 || \
-			ft_strcmp(line, "rrb") == 0 || \
-			ft_strcmp(line, "sa") == 0 || \
-			ft_strcmp(line, "sb") == 0 || \
-			ft_strcmp(line, "ss") == 0 || \
-			ft_strcmp(line, "rr")  == 0|| \
-			ft_strcmp(line, "rrr")  == 0)
-		return (TRUE);
+	t_data	data;
+	char	*line;
+
+	if (get_valid_input(argc, argv, &data) == FAIL || \
+			fill_array(&data) == FAIL || \
+			sort_and_check_unicity(data.array, data.size) == FAIL)
+		return (free_and_quit(data, EXIT_FAILURE));
+	fill_indexes_and_size(&data.a, data.array, data.size);
+	if (data.size == 0)
+		return (free_and_quit(data, EXIT_SUCCESS));
+	while (get_next_line(0, &line))
+	{
+		if (execute_instruction(&data, line) == FAIL)
+		{
+			free(line);
+			return (free_and_quit(data, EXIT_FAILURE));
+		}
+		free(line);
+	}
+	free(line);
+	if (is_sorted(&data.a) && data.b.size == 0)
+		write(1, "OK\n", 3);
 	else
-		return (FALSE);
+		write(1, "KO\n", 3);
+	return (free_and_quit(data, EXIT_SUCCESS));
 }
 
 int	execute_instruction(t_data *data, char *line)

@@ -9,7 +9,6 @@
 # define ERR_MSG "Error\n"
 # define FAIL	(0)
 # define SUCCESS (1)
-
 # define INTMAX_LEN (10)
 
 enum e_datatype {VALUE, INDEX};
@@ -17,7 +16,7 @@ enum e_from {TOP, BOTTOM};
 enum e_maxmin {MAX, MIN};
 enum e_print {VERBOSE, QUIET};
 
-typedef struct	s_node
+typedef struct s_node
 {
 	int				value;
 	int				index;
@@ -26,7 +25,7 @@ typedef struct	s_node
 	struct s_node	*next;
 }				t_node;
 
-typedef struct	s_stack
+typedef struct s_stack
 {
 	char	name;
 	t_node	*head;
@@ -36,13 +35,13 @@ typedef struct	s_stack
 	int		index_min;
 }				t_stack;
 
-typedef	struct	s_data
+typedef struct s_data
 {
 	int		*array;
 	size_t	size;
 
 	t_stack	a;
-	t_stack b;
+	t_stack	b;
 }				t_data;
 
 typedef void	(*t_algo)(t_data *data);
@@ -123,4 +122,4 @@ void	rotate_both(t_data *data);
 void	reverse_rotate_both(t_data *data);
 void	swap_both(t_data *data);
 
-# endif
+#endif

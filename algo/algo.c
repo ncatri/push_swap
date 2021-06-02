@@ -17,7 +17,6 @@ void	split_two(t_data *data)
 	data->b.index_max = data->size - 1;
 	data->b.index_min = 0;
 	while (data->b.head != NULL)
-	//	throwback_max_min(&data->a, &data->b);
 		throwback_max(&data->a, &data->b);
 	if (get_target_position(&data->a, data->a.index_min) > data->a.size / 2)
 		while (data->a.head->index != 0)
@@ -46,20 +45,8 @@ void	move_lower_values(int range, t_stack *dst, t_stack *src)
 			while (++j <= bottom)
 				reverse_rotate_stack(src, VERBOSE);
 		if (top != -1)
-		{
 			push(dst, src, VERBOSE);
-//			opti(dst);
-		}
 	}
-}
-
-void	opti(t_stack *s)
-{
-	int top;
-
-	top = s->head->index;
-	if (s->head->next && top < s->head->next->index) 
-		swap(s, VERBOSE);
 }
 
 int	get_position_from_top(int range, t_stack *s)
