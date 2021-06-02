@@ -13,29 +13,29 @@ void	sort_three(t_stack *stack)
 		return ;
 	else if (top < mid && mid > bottom && bottom > top)
 	{
-		swap(stack);
-		rotate_stack(stack);
+		swap(stack, VERBOSE);
+		rotate_stack(stack, VERBOSE);
 	}
 	else if (top > mid && mid < bottom && bottom > top)
-		swap(stack);
+		swap(stack, VERBOSE);
 	else if (top < mid && mid > bottom && bottom < top)
-		reverse_rotate_stack(stack);
+		reverse_rotate_stack(stack, VERBOSE);
 	else if (top > mid && mid < bottom && bottom < top)
-		rotate_stack(stack);
+		rotate_stack(stack, VERBOSE);
 	else if (top > mid && mid > bottom && bottom < top)
 	{
-		swap(stack);
-		reverse_rotate_stack(stack);
+		swap(stack, VERBOSE);
+		reverse_rotate_stack(stack, VERBOSE);
 	}
 }
 
 void	sort_five(t_data *data)
 {
 	move_target_to_top(&data->a, 0);
-	push(&data->b, &data->a);
+	push(&data->b, &data->a, VERBOSE);
 	move_target_to_top(&data->a, 1);
-	push(&data->b, &data->a);
+	push(&data->b, &data->a, VERBOSE);
 	sort_three(&data->a);
-	push(&data->a, &data->b);
-	push(&data->a, &data->b);
+	push(&data->a, &data->b, VERBOSE);
+	push(&data->a, &data->b, VERBOSE);
 }

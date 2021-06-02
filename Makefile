@@ -8,11 +8,18 @@ SRCS	= setup_stacks.c \
 		  debug.c \
 		  utils.c
 
+SRCS_BONUS	= checker_functions.c \
+			  operations_double.c
+
 OBJS 	= $(SRCS:.c=.o)
+
+OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 
 NAME	= push_swap
 LIBFT	= libft
 INC		= includes
+
+NAME_BONUS = checker
 
 RM 		= rm -f
 CC		= clang
@@ -27,11 +34,16 @@ $(LIBFT).a:
 	$(MAKE) -C $(LIBFT)
 	mv $(LIBFT)/$(LIBFT).a .
 
+bonus: $(OBJS) $(OBJS_BONUS) $(LIBFT).a
+	$(CC) $(CFLAGS) -L. -lft $(OBJS) $(OBJS_BONUS) checker.c -o $(NAME_BONUS)
+
 clean:
 	$(MAKE) clean -C $(LIBFT)
 	$(RM) $(OBJS)
 	$(RM) $(LIBFT).a
 	$(RM) -r $(NAME).dSYM
+	$(RM) $(OBJS_BONUS)
+	$(RM) -r $(NAME_BONUS).dSYM
 
 fclean: clean
 	$(MAKE) fclean -C $(LIBFT)

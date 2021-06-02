@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void	throwback_values(t_stack *dst, t_stack *src)
+void	throwback_max_min(t_stack *dst, t_stack *src)
 {
 	int	max;
 	int	min;
@@ -19,9 +19,16 @@ void	throwback_values(t_stack *dst, t_stack *src)
 		move_target_to_top(src, src->index_min);
 		src->index_min++;
 	}
-	push(dst, src);
+	push(dst, src, VERBOSE);
 	if (best == MIN && dst->size > 1)
-		rotate_stack(dst);
+		rotate_stack(dst, VERBOSE);
+}
+
+void	throwback_max(t_stack *dst, t_stack *src)
+{
+	move_target_to_top(src, src->index_max);
+	src->index_max--;
+	push(dst, src, VERBOSE);
 }
 
 int	best_to_move(int max, int min, t_stack *s)
@@ -74,11 +81,11 @@ void	move_target_to_top(t_stack *src, int target)
 	pos = get_target_position(src, target);
 	j = -1;
 	if (pos == 1)
-		swap(src);
+		swap(src, VERBOSE);
 	else if (pos <= src->size / 2)
 		while (++j < pos)
-			rotate_stack(src);
+			rotate_stack(src, VERBOSE);
 	else
 		while (++j < (src->size - pos))
-			reverse_rotate_stack(src);
+			reverse_rotate_stack(src, VERBOSE);
 }

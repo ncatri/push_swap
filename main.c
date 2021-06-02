@@ -23,6 +23,10 @@ int main(int argc, char **argv)
 	printf("stack b:\n");
 	print_stack(data.b, INDEX);
 
+	if (is_sorted(&data.a))
+		write(1, "OK\n", 3);
+	else
+		write(1, "KO\n", 3);
 	
 	return (free_and_quit(data, EXIT_SUCCESS));
 }

@@ -13,10 +13,9 @@
 # define INTMAX_LEN (10)
 
 enum e_datatype {VALUE, INDEX};
-
 enum e_from {TOP, BOTTOM};
-
 enum e_maxmin {MAX, MIN};
+enum e_print {VERBOSE, QUIET};
 
 typedef struct	s_node
 {
@@ -80,11 +79,11 @@ void	print_array(int *array, size_t size);
  *
 */
 
-void	swap(t_stack *s);
-t_node	*get_tail(t_node *head);
-void	rotate_stack(t_stack *s);
-void	reverse_rotate_stack(t_stack *s);
-void	push(t_stack *dst, t_stack *src);
+void	swap(t_stack *s, int mode);
+t_node	*get_tail(t_node *head, int mode);
+void	rotate_stack(t_stack *s, int mode);
+void	reverse_rotate_stack(t_stack *s, int mode);
+void	push(t_stack *dst, t_stack *src, int mode);
 void	print_operation(char *op, char stack_name);
 
 /*
@@ -102,12 +101,26 @@ int		get_position_from_top(int range, t_stack *s);
 int		get_position_from_bottom(int range, t_stack *s);
 void	move_highest_to_top(t_stack *dst, t_stack *src);
 
-void	throwback_values(t_stack *dst, t_stack *src);
+void	throwback_max_min(t_stack *dst, t_stack *src);
 int		best_to_move(int max, int min, t_stack *s);
 int		get_moves_to_top(int position, t_stack *s);
 int		get_target_position(t_stack *s, int target);
 void	move_target_to_top(t_stack *src, int target);
 
 void	sort_five(t_data *data);
+
+void	opti(t_stack *s);
+void	throwback_max(t_stack *dst, t_stack *s);
+
+/*
+ * checker
+ *
+*/
+
+t_bool	is_valid_instruction(char *line);
+int		execute_instruction(t_data *data, char *line);
+void	rotate_both(t_data *data);
+void	reverse_rotate_both(t_data *data);
+void	swap_both(t_data *data);
 
 # endif

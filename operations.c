@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void	swap(t_stack *s)
+void	swap(t_stack *s, int mode)
 {
 	t_node	*second;
 
@@ -16,10 +16,11 @@ void	swap(t_stack *s)
 	second->next = s->head;
 	second->prev = NULL;
 	s->head = second;
-	print_operation("s", s->name);
+	if (mode == VERBOSE)
+		print_operation("s", s->name);
 }
 
-void	reverse_rotate_stack(t_stack *s)
+void	reverse_rotate_stack(t_stack *s, int mode)
 {
 	t_node	*new_tail;
 
@@ -32,10 +33,11 @@ void	reverse_rotate_stack(t_stack *s)
 	s->head = s->tail;
 	s->tail = new_tail;
 	s->tail->next = NULL;
-	print_operation("rr", s->name);
+	if (mode == VERBOSE)
+		print_operation("rr", s->name);
 }
 
-void	rotate_stack(t_stack *s)
+void	rotate_stack(t_stack *s, int mode)
 {
 	t_node	*new_head;
 
@@ -48,13 +50,14 @@ void	rotate_stack(t_stack *s)
 	s->tail = s->head;
 	s->head = new_head;
 	new_head->prev = NULL;
-	print_operation("r", s->name);
+	if (mode == VERBOSE)
+		print_operation("r", s->name);
 }
 
 /* pa : push b to a --> push(a, b)
  * pb : push a to b --> push(b, a)
 */
-void	push(t_stack *dst, t_stack *src)
+void	push(t_stack *dst, t_stack *src, int mode)
 {
 	t_node	*new_src_head;
 
@@ -70,11 +73,12 @@ void	push(t_stack *dst, t_stack *src)
 	src->head = new_src_head;
 	if (dst->tail == NULL)
 		dst->tail = dst->head;
-	print_operation("p", dst->name);
 	dst->size++;
 	src->size--;
 	if (src->size == 0)
 		src->tail = NULL;
+	if (mode == VERBOSE)
+		print_operation("p", dst->name);
 }
 
 void	print_operation(char *op, char stack_name)
