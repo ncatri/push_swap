@@ -22,7 +22,7 @@ NAME_BONUS = checker
 
 RM 		= rm -f
 CC		= clang
-CFLAGS	= -Wall -Wextra -Werror -g -I$(INC) -I$(LIBFT)/includes
+CFLAGS	= -Wall -Wextra -Werror -g -I$(INC) -I$(LIBFT)/includes -fsanitize=address
 
 %.o: %.c $(INC)/$(NAME).h $(LIBFT)/$(LIBFT).a
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -38,8 +38,8 @@ $(LIBFT)/(LIBFT).a:
 libft_:
 	$(MAKE) -C $(LIBFT)
 
-bonus: $(NAME) $(OBJS_BONUS) $(LIBFT).a $(INC)/$(NAME).h
-	$(CC) $(CFLAGS) -L. -lft $(OBJS) $(OBJS_BONUS) bonus/checker.c -o $(NAME_BONUS)
+bonus: $(NAME) $(OBJS_BONUS) bonus/checker.c $(LIBFT)/$(LIBFT).a
+	$(CC) $(CFLAGS) -L$(LIBFT) -lft $(OBJS) $(OBJS_BONUS) bonus/checker.c -o $(NAME_BONUS)
 
 clean:
 	$(MAKE) clean -C $(LIBFT)
