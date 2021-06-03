@@ -52,6 +52,7 @@ clean:
 fclean: clean
 	$(MAKE) fclean -C $(LIBFT)
 	$(RM) $(NAME)
+	$(RM) checker
 
 re: fclean all
 
