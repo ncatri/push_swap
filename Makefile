@@ -27,7 +27,7 @@ CFLAGS	= -Wall -Wextra -Werror -g -I$(INC) -I$(LIBFT)/includes
 %.o: %.c $(INC)/$(NAME).h $(LIBFT)/$(LIBFT).a
 	$(CC) $(CFLAGS) -c $< -o $@
 
-all: $(NAME)
+all: libft_ $(NAME)
 
 $(NAME): $(OBJS) main.c | libft_
 	$(CC) $(CFLAGS) -L$(LIBFT) -lft $(OBJS) main.c -o $(NAME)
